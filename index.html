@@ -1,13 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<title>Jasa SBY Surabaya</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LMS - MA NURUL HIDAYAH TEMORAN OMBEN</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>body{font-family:'Plus Jakarta Sans',sans-serif}</style>
 </head>
-<body style="text-align:center;padding:50px;background:#f0f7ff;font-family:sans-serif">
-<h1 style="font-size:34px;color:#2563eb;font-weight:bold">JASA SBY SURABAYA</h1>
-<p style="margin-top:10px;font-size:18px">Jasa Profesional & Terpercaya di Surabaya</p>
-<a href="https://wa.me/6281908905091 style="background:#22c55e;color:white;padding:14px 28px;display:inline-block;margin-top:30px;border-radius:10px;text-decoration:none;font-weight:bold">Chat WhatsApp sekarang 
+<body class="bg-[#f6f8f5]">
 
-</html>
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="min-h-screen flex">
+<div class="w-full lg:w-[45%] bg-white p-8 lg:p-12 flex flex-col justify-center">
+<div class="max-w-md mx-auto w-full">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-12 h-12 bg-[#0f7a3a] rounded-xl flex items-center justify-center text-white text-xl"><i class="fa-solid fa-mosque"></i></div>
+<div><h1 class="font-bold text-lg leading-tight">MA NURUL HIDAYAH</h1><p class="text-xs text-gray-500 -mt-1">TEMORAN OMBEN SAMPANG</p></div>
+</div>
+<h2 class="text-[32px] font-bold leading-tight mb-2">Masuk ke Kelas<br>Digital Madrasah</h2>
+<p class="text-gray-500 text-sm mb-6">Platform pembelajaran modern seperti Google Classroom</p>
+
+<div class="grid grid-cols-3 gap-2 mb-6">
+<button onclick="setRole('admin')" id="btn-admin" class="role-btn border-2 border-[#0f7a3a] bg-[#eaf5ef] rounded-xl p-3 text-center"><i class="fa-solid fa-user-shield text-[#0f7a3a]"></i><div class="text-xs font-bold mt-1">Admin</div></button>
+<button onclick="setRole('guru')" id="btn-guru" class="role-btn border border-gray-200 rounded-xl p-3 text-center"><i class="fa-solid fa-chalkboard-user text-gray-500"></i><div class="text-xs font-bold mt-1">Guru</div></button>
+<button onclick="setRole('siswa')" id="btn-siswa" class="role-btn border border-gray-200 rounded-xl p-3 text-center"><i class="fa-solid fa-graduation-cap text-gray-500"></i><div class="text-xs font-bold mt-1">Siswa</div></button>
+</div>
+
+<div class="space-y-3">
+<input id="userInput" value="admin@manuh.sch.id" class="w-full p-3.5 rounded-xl border border-gray-200 bg-gray-50 text-sm outline-none focus:border-[#0f7a3a]" placeholder="Email / NISN">
+<input type="password" value="123456" class="w-full p-3.5 rounded-xl border border-gray-200 bg-gray-50 text-sm outline-none focus:border-[#0f7a3a]" placeholder="Password">
+<button onclick="login()" class="w-full bg-[#0f7a3a] text-white p-3.5 rounded-xl font-bold text-sm mt-2 hover:bg-[#0a5c2b]">Masuk ke Dashboard <i class="fa-solid fa-arrow-right ml-2"></i></button>
+</div>
+<div class="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800"><b>Demo Login:</b> Klik peran di atas. Password bebas. Semua fitur bisa dicoba.</div>
+</div>
+</div>
+<div class="hidden lg:flex w-[55%] bg-[#0f7a3a] relative overflow-hidden p-12 flex-col justify-between">
+<div class="absolute -right-20 -top-20 w-[400px] h-[400px] bg-white/10 rounded-full"></div>
+<div class="text-white relative z-10"><span class="bg-white/20 px-3 py-1 rounded-full text-xs">LMS TERAKREDITASI</span><h2 class="text-4xl font-bold mt-6 leading-tight">Belajar, Ujian &<br>Laporan Nilai<br>Otomatis</h2></div>
+<div class="grid grid-cols-2 gap-3 relative z-10">
+<div class="bg-white rounded-2xl p-4"><div class="text-xs text-gray-500">Materi Aktif</div><div class="text-2xl font-bold">128</div><div class="text-xs text-green-600 mt-1">+12 minggu ini</div></div>
+<div class="bg-[#1a9a4e] rounded-2xl p-4 text-white"><div class="text-xs text-white/80">Nilai Rata-rata</div><div class="text-2xl font-bold">87.5</div><div class="text-xs mt-1">Otomatis</div></div>
+</div>
+</div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden min-h-screen flex">
+<aside class="w-[280px] bg-white border-r hidden lg:flex flex-col p-5">
+<div class="flex items-center gap-3 mb-8"><div class="w-10 h-10 bg-[#0f7a3a] rounded-xl flex items-center justify-center text-white"><i class="fa-solid fa-mosque"></i></div><div><h1 class="font-bold text-sm">MA NURUL HIDAYAH</h1><p class="text-[11px] text-gray-500">LMS v2.0</p></div></div>
+<nav class="space-y-1 flex-1">
+<a class="flex items-center gap-3 bg-[#0f7a3a] text-white p-3 rounded-xl text-sm font-bold"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-sm text-gray-600"><i class="fa-solid fa-book-open"></i> Materi <span class="ml-auto bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-bold">128</span></a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-sm text-gray-600"><i class="fa-solid fa-pen-to-square"></i> Ujian Online</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-sm text-gray-600"><i class="fa-solid fa-chart-simple"></i> Nilai & Raport</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-sm text-gray-600"><i class="fa-solid fa-users"></i> Siswa & Guru</a>
+</nav>
+<div id="roleInfo" class="bg-gray-50 rounded-xl p-3 flex items-center gap-3"><img src="https://i.pravatar.cc/100?img=12" class="w-9 h-9 rounded-full"><div><div class="text-sm font-bold" id="roleName">Admin</div><div class="text-[11px] text-gray-500" id="roleEmail">admin@manuh.sch.id</div></div></div>
+</aside>
+
+<main class="flex-1 p-4 lg:p-8">
+<div class="flex justify-between items-center mb-6">
+<div><h2 class="text-2xl font-bold">Assalamualaikum, <span id="greetRole">Admin</span>! 👋</h2><p class="text-sm text-gray-500">MA NURUL HIDAYAH TEMORAN - Dashboard Hari Ini</p></div>
+<button onclick="logout()" class="bg-white border px-4 py-2 rounded-xl text-sm font-bold"><i class="fa-solid fa-right-from-bracket mr-1"></i> Keluar</button>
+</div>
+
+<!-- STATS -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+<div class="bg-white p-5 rounded-2xl border"><div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-3"><i class="fa-solid fa-users"></i></div><div class="text-2xl font-bold">312</div><div class="text-xs text-gray-500">Total Siswa Aktif</div></div>
+<div class="bg-white p-5 rounded-2xl border"><div class="w-10 h-10 bg-green-50 text-green-600 rounded-xl flex items-center justify-center mb-3"><i class="fa-solid fa-book"></i></div><div class="text-2xl font-bold">128</div><div class="text-xs text-gray-500">Materi Terupload</div></div>
+<div class="bg-white p-5 rounded-2xl border"><div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-3"><i class="fa-solid fa-file-lines"></i></div><div class="text-2xl font-bold">24</div><div class="text-xs text-gray-500">Ujian Aktif</div></div>
+<div class="bg-[#0f7a3a] p-5 rounded-2xl text-white"><div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mb-3"><i class="fa-solid fa-chart-line"></i></div><div class="text-2xl font-bold">87%</div><div class="text-xs text-white/80">Nilai Otomatis Selesai</div></div>
+</div>
+
+<div class="grid lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 space-y-4">
+<div class="bg-white rounded-2xl border p-5">
+<div class="flex justify-between items-center mb-4"><h3 class="font-bold">Materi Terbaru <span class="text-xs font-normal text-gray-500">(Fitur Upload Guru)</span></h3><button class="text-xs bg-[#0f7a3a] text-white px-3 py-1.5 rounded-full font-bold">+ Upload Materi</button></div>
+<div class="space-y-3">
+<div class="flex gap-3 p-3 border rounded-xl hover:bg-gray-50"><div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-600"><i class="fa-solid fa-file-pdf"></i></div><div class="flex-1"><div class="font-bold text-sm">Fiqih - Bab Thaharah Lengkap</div><div class="text-xs text-gray-500">Ust. Sahal, M.Pd • XII IPA • 2.4 MB</div></div><span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full h-fit">BARU</span></div>
+<div class="flex gap-3 p-3 border rounded-xl hover:bg-gray-50"><div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600"><i class="fa-solid fa-video"></i></div><div class="flex-1"><div class="font-bold text-sm">Video: Tafsir Jalalain Juz 30</div><div class="text-xs text-gray-500">Ust. Ahmad • XI IPS • 45 menit</div></div><span class="text-xs bg-gray-100 px-2 py-1 rounded-full h-fit">Video</span></div>
+</div>
+</div>
+
+<div class="bg-white rounded-2xl border p-5">
+<h3 class="font-bold mb-4">Ujian Online - Nilai Otomatis</h3>
+<div class="bg-[#f6f8f5] border-2 border-dashed border-[#0f7a3a]/30 rounded-xl p-4">
+<div class="flex justify-between text-sm mb-2"><b>UTS Fiqih Kelas XII</b><span class="text-xs bg-amber-400 px-2 py-0.5 rounded-full">20 Soal • 60 Menit</span></div>
+<p class="text-xs text-gray-600 mb-3">Sistem akan mengoreksi otomatis pilihan ganda & menampilkan nilai langsung setelah submit.</p>
+<div id="quizArea">
+<div class="text-sm font-bold mb-2">1. Apa hukum air musta'mal untuk wudhu?</div>
+<div class="space-y-2">
+<label class="flex gap-2 p-2.5 border rounded-xl text-sm cursor-pointer hover:bg-white"><input type="radio" name="q1"> A. Suci dan mensucikan</label>
+<label class="flex gap-2 p-2.5 border rounded-xl text-sm cursor-pointer hover:bg-white bg-green-50 border-green-300"><input type="radio" name="q1" checked> B. Suci tapi tidak mensucikan</label>
+<label class="flex gap-2 p-2.5 border rounded-xl text-sm cursor-pointer hover:bg-white"><input type="radio" name="q1"> C. Najis</label>
+</div>
+<button onclick="koreksi()" class="mt-4 w-full bg-[#0f7a3a] text-white py-2.5 rounded-xl text-sm font-bold">Submit & Lihat Nilai Otomatis</button>
+</div>
+<div id="hasilNilai" class="hidden text-center py-4"><div class="text-5xl font-black text-[#0f7a3a]">85</div><div class="text-sm font-bold">Nilai Anda - LULUS</div><div class="text-xs text-gray-500 mt-1">Jawaban otomatis terkoreksi, masuk ke Laporan Guru</div></div>
+</div>
+</div>
+</div>
+
+<div class="space-y-4">
+<div class="bg-white rounded-2xl border p-5"><h3 class="font-bold mb-3">Laporan & Rekap Nilai</h3><canvas id="chart" class="w-full h-[160px] bg-gray-50 rounded-xl"></canvas><div class="mt-3 space-y-2 text-xs"><div class="flex justify-between"><span>Fiqih</span><b class="text-[#0f7a3a]">88</b></div><div class="flex justify-between"><span>Akidah Akhlak</span><b class="text-[#0f7a3a]">92</b></div><div class="flex justify-between"><span>Bahasa Arab</span><b>79</b></div></div><button class="mt-4 w-full border py-2 rounded-xl text-xs font-bold"><i class="fa-solid fa-download mr-1"></i> Download Laporan PDF (Admin)</button></div>
+<div class="bg-[#0f7a3a] rounded-2xl p-5 text-white"><h4 class="font-bold text-sm">Akses Cepat</h4><p class="text-xs text-white/80 mt-1 mb-3">Fitur sesuai role login</p><div class="space-y-2 text-xs"><div class="bg-white/15 p-2.5 rounded-xl">✓ Admin: Kelola Guru, Siswa, Laporan Sekolah</div><div class="bg-white/15 p-2.5 rounded-xl">✓ Guru: Upload Materi, Buat Soal, Input Nilai</div><div class="bg-white/15 p-2.5 rounded-xl">✓ Siswa: Akses Materi, Kerjakan Ujian, Lihat Nilai</div></div></div>
+</div>
+</div>
+</main>
+</div>
+
+<script>
+let currentRole='admin'
+function setRole(role){
+currentRole=role
+document.querySelectorAll('.role-btn').forEach(b=>b.className='role-btn border border-gray-200 rounded-xl p-3 text-center')
+document.getElementById('btn-'+role).className='role-btn border-2 border-[#0f7a3a] bg-[#eaf5ef] rounded-xl p-3 text-center'
+let emails={admin:'admin@manuh.sch.id',guru:'guru.fiqih@manuh.sch.id',siswa:'siswa.xii@manuh.sch.id'}
+document.getElementById('userInput').value=emails[role]
+}
+function login(){
+document.getElementById('loginPage').classList.add('hidden')
+document.getElementById('dashboard').classList.remove('hidden')
+document.getElementById('dashboard').classList.add('flex')
+document.getElementById('greetRole').innerText=currentRole.toUpperCase()
+document.getElementById('roleName').innerText=currentRole.charAt(0).toUpperCase()+currentRole.slice(1)
+document.getElementById('roleEmail').innerText=document.getElementById('userInput').value
+}
+function logout(){location.reload()}
+function koreksi(){
+document.getElementById('quizArea').classList.add('hidden')
+document.getElementById('hasilNilai').classList.remove('hidden')
+}
+</script>
+</body>
+  </html>
